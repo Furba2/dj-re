@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import T
+from .models import Topic
 # Register your models here.
-admin.site.register(T)
+admin.site.register(Topic)

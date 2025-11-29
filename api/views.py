@@ -1,24 +1,24 @@
 from rest_framework import generics, permissions
-from .s import TS
-from ls.models import T
+from .serializers import TopicSerializer
+from logs.models import Topic
 
-class TListCreate(generics.ListCreateAPIView):
+class TopicListCreate(generics.ListCreateAPIView):
 
-    serializer_class = TS
+    serializer_class = TopicSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return T.objects.filter(user=user)
+        return Topic.objects.filter(user=user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class TRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class TopicRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
-    serializer_class = TS
+    serializer_class = TopicSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return T.objects.filter(user=user)
+        return Topic.objects.filter(user=user)
